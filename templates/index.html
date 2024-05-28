@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Detection</title>
+</head>
+<body>
+    <h1>Upload Image</h1>
+    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput">
+        <input type="submit" value="Upload">
+    </form>
+
+    <h2>Original Image</h2>
+    <img id="originalImage" src="" alt="Original Image" style="display: none; max-width: 100%; height: auto;">
+
+    <h2>Detected Objects</h2>
+    <img id="detectedImage" src="" alt="Detected Objects" style="display: none; max-width: 100%; height: auto;">
+
+    <h2>Mask</h2>
+    <img id="maskImage" src="" alt="Mask" style="display: none; max-width: 100%; height: auto;">
+
+    <h2>Results</h2>
+    <div id="results" style="display: none;"></div>
+
+    <script>
+        document.getElementById('uploadForm').onsubmit = async function(event) {
+            event.preventDefault();
+            const fileInput = document.getElementById('fileInput');
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.error) {
+                alert(result.error);
+                return;
+            }
+
+            document.getElementById('originalImage').src = `/static/uploads/${result.filename}`;
+            document.getElementById('originalImage').style.display = 'block';
+            document.getElementById('detectedImage').src = `/static/uploads/${result.detected_filename}`;
+            document.getElementById('detectedImage').style.display = 'block';
+            document.getElementById('maskImage').src = `/static/uploads/${result.mask_filename}`;
+            document.getElementById('maskImage').style.display = 'block';
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.style.display = 'block';
+            resultsDiv.innerHTML = '';  // Clear previous results
+            result.circles.forEach(circle => {
+                const circleDiv = document.createElement('div');
+                circleDiv.innerHTML = `
+                    <p><strong>Circle ID:</strong> ${circle.id}</p>
+                    <p><strong>Bounding Box:</strong> (${circle.bounding_box.join(', ')})</p>
+                    <p><strong>Centroid:</strong> (${circle.centroid.join(', ')})</p>
+                    <p><strong>Radius:</strong> ${circle.radius}</p>
+                    <hr>
+                `;
+                resultsDiv.appendChild(circleDiv);
+            });
+        }
+    </script>
+</body>
+</html>
