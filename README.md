@@ -66,14 +66,14 @@ Follow these steps to set up the project on your local system:
 ## Demo
 
 ![demo_video-ezgif com-gif-to-mp4-converter](https://github.com/usta-cyber/Challegence1_Coin_Detection/assets/61576602/e29b4b4b-a94e-49ff-86cf-ce689a2e3835)
-
+### Images
 <img width="682" alt="upload_image" src="https://github.com/usta-cyber/Challegence1_Coin_Detection/assets/61576602/47f3e6ac-48e1-455b-9e43-7698b12a1405">
 <img width="452" alt="Detection_image" src="https://github.com/usta-cyber/Challegence1_Coin_Detection/assets/61576602/0e2ef092-407d-4675-862b-94fad615bb6e">
 <img width="436" alt="mask_image" src="https://github.com/usta-cyber/Challegence1_Coin_Detection/assets/61576602/7cc759cd-efde-4726-b761-482cdaf7ab91">
-<img width="395" alt="Results" src="https://github.com/usta-cyber/Challegence1_Coin_Detection/assets/61576602/53e1f9ba-d9fc-4a3d-a1d5-cdb04b3736f4">
 
 ## Results
 The project initially used the Hough Circle method for coin detection, but due to high false positives, a YOLOv5 model was trained for better accuracy. The results, including object unique IDs, bounding boxes, and centroids, are stored in an SQLite database and can be viewed via the web interface.
+<img width="395" alt="Results" src="https://github.com/usta-cyber/Challegence1_Coin_Detection/assets/61576602/53e1f9ba-d9fc-4a3d-a1d5-cdb04b3736f4">
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or features you'd like to see.
