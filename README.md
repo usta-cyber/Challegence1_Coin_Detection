@@ -71,6 +71,7 @@ Follow these steps to set up the project on your local system:
 
 ## Results
 The project initially used the Hough Circle method for coin detection, but due to high false positives, a YOLOv5 model was trained for better accuracy. The results, including object unique IDs, bounding boxes, and centroids, are stored in an SQLite database and can be viewed via the web interface.
+
 <img width="395" alt="Results" src="https://github.com/usta-cyber/Challegence1_Coin_Detection/assets/61576602/53e1f9ba-d9fc-4a3d-a1d5-cdb04b3736f4">
 
 ## Contributing
